@@ -1,0 +1,12 @@
+/.idea
+.*/*.iml
+*/*.pyc
+/**/__pycache__
+commons/config.py
+
+/*exploratory/analysis/*.html
+analysis/*.txt
+
+*/*/.ipynb_checkpoints/
+
+config.py
