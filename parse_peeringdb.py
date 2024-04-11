@@ -19,7 +19,7 @@ def main():
         print(get_single_object(args.dataset, args.type, args.single_id))
 
     elif args.dataset.endswith('.sqlite') and args.type and not args.single_id:
-        print(get_sqlite_object(args.dataset, args.type)) 
+        print(get_sqlite_object(args.dataset, args.type))
 
     elif args.dataset.endswith('.sqlite') and args.type and args.single_id:
         print(get_sqlite_single_object(args.dataset, args.type, args.single_id))
@@ -30,15 +30,18 @@ def get_json_data(filename):
         data = json.load(f)
     return data
 
+
 def get_object(filename, type):
     data = get_json_data(filename)
     return data[type]['data']
+
 
 def get_single_object(filename, type, target_id):
     data = get_json_data(filename)
     for item in data[type]['data']:
         if item['id'] == target_id:
             return item
+
 
 def get_sqlite_object(filename, type):
     connection = sqlite3.connect(filename)
@@ -58,6 +61,7 @@ def get_sqlite_object(filename, type):
     connection.close()
     return obj
 
+
 def get_sqlite_single_object(filename, type, target_id):
     connection = sqlite3.connect(filename)
     cursor = connection.cursor()
@@ -72,6 +76,7 @@ def get_sqlite_single_object(filename, type, target_id):
                 single_obj[names[i]] = row[i]
             connection.close()
             return single_obj
+
 
 if __name__ == '__main__':
     main()
